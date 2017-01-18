@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-import sys
-import random
 import json
 
 # files
@@ -10,9 +8,10 @@ events = json.loads(text_data['events'])
 # Requested marks
 remembered = 0
 score = 0
-total_response_time = 0
 time = 0
 average_response_time = 0
+
+total_response_time = 0
 
 for event in events:
     if event['name'] == 'success':

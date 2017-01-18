@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-import sys
-import random
 import json
 
 # files
@@ -8,29 +6,29 @@ import json
 events = json.loads(text_data['events'])
 
 # Requested marks
-remembered = 0
-score = 0
-total_response_time = 0
 time = 0
+correct = 0
+wrong = 0
+score = 0
 average_response_time = 0
 
+total_response_time = 0
+
 for event in events:
-    if event['name'] == 'success':
-        remembered += 1
-        reaction = event['args']['reaction']
+    if event['name'] == 'correct':
         total_response_time += reaction
-        if reaction < 4000:
-            score += 5
-        elif reaction < 8000:
-            score += 4
-        else:
-            score += 3
+        correct += 1
+
+    if event['name'] == 'wrong':
+        total_response_time += reaction
+        wrong += 1
+
     if event['name'] == 'test_complete':
         time = event['time']
 
-if remembered > 0:
-    average_response_time = total_response_time / remembered
+if correct > 0:
+    average_response_time = total_response_time / (correct + wrong)
 else:
     average_response_time = total_response_time
 
-
+score = correct * 3 + (correct - wrong) * 2 + (6 - int(average_response_time / 1000.0)) * 2
