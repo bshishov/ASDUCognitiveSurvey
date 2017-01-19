@@ -9,7 +9,7 @@ reactions = [e['args']['reaction'] for e in events if e['name'] == 'success']
 
 # Requested marks
 fails = len([e for e in events if e['name'] == 'fail'])
-reaction_avg = avg(reactions)
+reaction_avg = sum(reactions) / float(len(reactions))
 reaction_min = min(reactions)
 reaction_max = max(reactions)
 

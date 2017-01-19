@@ -31,5 +31,3 @@ if remembered > 0:
     average_response_time = total_response_time / remembered
 else:
     average_response_time = total_response_time
-
-

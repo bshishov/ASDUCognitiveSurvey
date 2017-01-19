@@ -3,6 +3,7 @@ import cmath
 import numpy as np
 import os.path
 
+
 def read_file(f):
     chunk = f.read(2)
     raw_input = []
@@ -10,6 +11,7 @@ def read_file(f):
         raw_input.append(unpack('<h', chunk)[0])
         chunk = f.read(2)
     return raw_input
+
 
 def dft(fnList):
     pi2 = cmath.pi * 2.0
@@ -21,6 +23,7 @@ def dft(fnList):
         FmList.append(abs(Fm / N))
     return FmList
 
+
 def calc_cepstrum(spectrum):
     return dft([cmath.log(amp) for i, amp in enumerate(spectrum)])
 
@@ -30,7 +33,7 @@ f = open(filename, "rb")
 x = 0
 raw = []
 fund = []
-while (x != os.path.getsize(filename)//80 - 1):
+while x != os.path.getsize(filename)//80 - 1:
     #фрагменты по 10мс
     raw_input = read_file(f)[0:80]
     raw.append(raw_input)
@@ -47,7 +50,7 @@ while (x != os.path.getsize(filename)//80 - 1):
 f.close()
 
 
-f0_avg = avg(fund)
+f0_avg = np.mean(fund)
 print('Average fundamental frequency: ', f0_avg)
 
 f0_std = np.std(fund)
