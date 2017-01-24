@@ -60,5 +60,5 @@ else:
 
 if lie_score > 4:
     lie_score_comment = 'Неискренность в ответах'
-else
+else:
     lie_score_comment = 'Норма'
