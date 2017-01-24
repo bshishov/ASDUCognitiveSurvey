@@ -61,7 +61,6 @@ def f0_freq(filename):
         fund.append(fund_freq)
         x += 1
         f.seek(x * fr)
-        print('.')
     f.close()
     print("fundamental frequency list: ", fund)
     return fund

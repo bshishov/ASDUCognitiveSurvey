@@ -16,7 +16,7 @@ total_correct_time = 0
 
 for event in events:
     if event['name'] == 'correct':
-        total_correct_time += reaction
+        total_correct_time += event['args']['reaction']
         correct += 1
 
     if event['name'] == 'wrong':
