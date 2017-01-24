@@ -24,17 +24,17 @@ for event in events:
 
         if answer == 'yes':
             if question_id in EXTRAVERT_YES:
-                extravert_score++
+                extravert_score += 1
             if question_id in NEUROTISM_YES:
-                neurotism_score++
+                neurotism_score += 1
             if question_id in LIE_YES:
-                lie_score++
+                lie_score += 1
 
         if answer == 'no':
             if question_id in EXTRAVERT_NO:
-                extravert_score++
+                extravert_score += 1
             if question_id in LIE_NO:
-                lie_score++
+                lie_score += 1
 
 if extravert_score > 15:
     extravert_score_comment = 'Яркий экстраверт'
