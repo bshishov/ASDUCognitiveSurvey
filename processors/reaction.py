@@ -18,7 +18,7 @@ score = 0
 
 if reaction_avg <= 250:
     score = 100
-elif reaction_avg > 250 && reaction_avg < 350:
+elif reaction_avg > 250 and reaction_avg < 350:
     score = 100 - (reaction_avg - 250)
-else
+else:
     score = 0
