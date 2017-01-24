@@ -16,11 +16,11 @@ total_response_time = 0
 
 for event in events:
     if event['name'] == 'correct':
-        total_response_time += reaction
+        total_response_time += event['agss']['reaction']
         correct += 1
 
     if event['name'] == 'wrong':
-        total_response_time += reaction
+        total_response_time += event['args']['reaction']
         wrong += 1
 
     if event['name'] == 'test_complete':
