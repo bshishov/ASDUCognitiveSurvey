@@ -32,3 +32,5 @@ else:
     average_response_time = total_response_time
 
 score = correct * 3 + (correct - wrong) * 2 + (6 - int(average_response_time / 1000.0)) * 2
+if score > 100:
+    score = 100
