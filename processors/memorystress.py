@@ -35,4 +35,4 @@ score = correct * 3 + (correct - wrong) * 2 + (6 - int(average_response_time / 1
 if score > 100:
     score = 100
 if wrong > 15:
-    score = 100
+    score = 0
