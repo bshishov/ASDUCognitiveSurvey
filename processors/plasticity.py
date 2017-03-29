@@ -33,7 +33,7 @@ else:
 
 # Time penalty: decrease score by 2 for each second over 40s
 if time > 40000:
-    score -= -2 * (time - 40000) / 1000.0
+    score -= 2 * (time - 40000) / 1000.0
 
 # Wrong answers penalty: -10 points for each wrong answer
 score -= wrong * 10
