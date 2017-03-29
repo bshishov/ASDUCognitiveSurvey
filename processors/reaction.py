@@ -16,9 +16,12 @@ reaction_max = max(reactions)
 
 score = 0
 
-if reaction_avg <= 250:
+MIN_REACTION = 250.0  # ms
+MAX_REACTION = 500.0  # ms
+
+if reaction_avg <= MIN_REACTION:
     score = 100
-elif reaction_avg > 250 and reaction_avg < 350:
-    score = 100 - (reaction_avg - 250)
+elif reaction_avg > MIN_REACTION and reaction_avg < MAX_REACTION:
+    score = 100 - 100 * (reaction_avg - MIN_REACTION) / (MAX_REACTION - MIN_REACTION)
 else:
     score = 0
