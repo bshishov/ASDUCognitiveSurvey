@@ -22,7 +22,7 @@
         var draw = SVG('test_svg');
 
         var colors = ['red', 'green', 'yellow', 'cyan', 'blue'];
-        var colorNames = ['красный', 'зеленый', 'желтый', 'голубой', 'синий'];
+        var colorNames = ['красный', 'зелёный', 'желтый', 'голубой', 'синий'];
         var colorButtonRadius = 100;
         var colorButtonPadding = 100;
         var startTimeout = 2000;
@@ -164,7 +164,7 @@
             var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
             var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
 
-            var grammar = '#JSGF V1.0; grammar colors; public <color> = красный | синий | зеленый | желтый ;'
+            var grammar = '#JSGF V1.0; grammar colors; public <color> = красный | синий | зелёный | желтый | голубой;'
             var recognition = new SpeechRecognition();
             var speechRecognitionList = new SpeechGrammarList();
             speechRecognitionList.addFromString(grammar, 1);
