@@ -3,6 +3,7 @@
 <head>
     <title>Тест на пластичность мышления</title>
     <meta charset="utf-8" />
+    <meta name="author" content="Борис Шишов">
     <meta name="author" content="Максим Пулин">
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -30,7 +31,8 @@
         var random = new Math.seedrandom('123');
 
 
-        var speechRecognitionAvailable = (SpeechRecognition != undefined) || ('webkitSpeechRecognition' in window) || false;
+        //var speechRecognitionAvailable = (SpeechRecognition != undefined) || ('webkitSpeechRecognition' in window) || false;
+        var speechRecognitionAvailable = false;
         var showControls = true; // = !speechRecognitionAvailable;
         //var showControls = !speechRecognitionAvailable;
 
@@ -154,7 +156,7 @@
             group.move("50%", "80%");
         }
 
-
+        /*
         if(speechRecognitionAvailable)
         {
             // За основу взят код:
@@ -231,7 +233,7 @@
             }
 
             recognition.start();
-        }
+        }*/
 
         String.prototype.capitalizeFirstLetter = function() {
             return this.charAt(0).toUpperCase() + this.slice(1);
