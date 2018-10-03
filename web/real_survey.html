@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тест на темперамент</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Максим Пулин">
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/localrunner.js"></script>
+    <script type="text/javascript" src="js/seedrandom.min.js"></script>
+    <script type="text/javascript" src="js/svg.min.js"></script>
+    <script type="text/javascript">
+        function init(test) {
+            console.log('Initialising test', test);
+            document.dispatchEvent(CustomEvent('testInit',{'detail':{'test':test}}));
+        };
+    </script>
+    <style type="text/css">
+        .container {
+            height: 500px;
+            width: 100%;
+            font-family: Georgia, Serif;
+            text-align: center;
+            display: flex;
+            align-items: center;
+        }
+
+        .question {
+            width: 500px;
+            display: flex;
+            flex-flow: column;
+            margin: 0 auto;
+        }
+
+        .question > .text {
+            font-size: 2em;
+            max-width: 500px;
+            margin: 50px auto;
+        }
+
+        .question > .note {
+            font-size: 1em;
+            max-width: 300px;
+            margin: 10px auto;
+        }
+
+        .question h1 {
+            vertical-align: middle;
+            height: 200px;
+        }
+
+        .question .answer input {
+            width: 400px;
+        }
+
+        .button {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            border: 0;
+            font-size: 1.2em;
+            border-radius: 20px;
+            background: cyan;
+            cursor: pointer;
+        }
+
+        .labels {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            width: 500px;
+            margin: auto 10px auto 0px;
+        }
+
+        .label {
+            width: 100px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="question">
+            <div class="text"></div>
+            <div class="note">Укажите ответ по шкале от 0 до 10</div>
+            <div class="labels">
+                <div class="label">0</div>
+                <div class="label">5</div>
+                <div class="label">10</div>
+            </div>
+            <div class="answer">
+                <input type="range" list="tickmarks" min="0" max="10" step="1">
+
+                <datalist id="tickmarks">
+                  <option value="0">
+                  <option value="1">
+                  <option value="2">
+                  <option value="3">
+                  <option value="4">
+                  <option value="5">
+                  <option value="6">
+                  <option value="7">
+                  <option value="8">
+                  <option value="9">
+                  <option value="10">
+                </datalist>
+            </div>
+            <div>
+                <div class="button" onclick="nextQuestion()">Далее</div>
+            </div>
+        </div>
+    </div>
+
+    <svg height="500px" width="100%" id="test_svg"></svg>
+    <script type="text/javascript">
+        const $ = (q) => document.querySelectorAll(q);
+
+        var questions = [
+            // Общие
+            { question: "Как много параметров/объектов вы отслеживаете одновременно?", labels: ["Мало", "", "Очень много"]},
+            { question: "Насколько хорошо автоматизированны процессы с которыми вам приходится работать?", labels: ["Плохо", "", "Хорошо"]},
+            { question: "Как быстро после начала работы вы испытываете усталость?", labels: ["Почти сразу", "", "Не устаю"]},
+
+            // Вазимодействие
+            { question: "Как часто вам приходится взаимодействовать с руководством в течение дня?", labels: ["Очень редко", "Временами", "Очень часто"]},
+            { question: "Как часто вам приходится взаимодействовать с коллегами в течение дня?", labels: ["Очень редко", "Временами", "Очень часто"]},
+            //{ question: "При работе в паре, как много задач приходится выполнять вам?", labels: ["Мало", "", "Много"]},
+
+            // Внештатные
+            { question: "Как часто происходят внештатные ситуации?", labels: ["Очень редко", "Временами", "Очень часто"]},
+            { question: "Как вы оцениваете свою напряженность во время внештатной/чрезвычайной ситуации?", labels: ["Полное спокойствие", "", "Паника"]},
+            { question: "Насколько активно приходится действовать во время внештатной/чрезвычайной ситуации?", labels: ["Наблюдаю", "", "Активно участвую"]},
+        ];
+        var currentQuestionIdx = -1;
+
+        var questionElem = $(".question .text")[0];
+        var labelsElem = $(".label");
+        var labelLeft = labelsElem[0];
+        var labelCenter = labelsElem[1];
+        var labelRight = labelsElem[2];
+        var slider = $("input[type=range]")[0];
+
+        const displayQuestion = function(question) {
+            questionElem.innerHTML = question.question;
+            labelLeft.innerHTML = question.labels[0];
+            labelCenter.innerHTML = question.labels[1];
+            labelRight.innerHTML = question.labels[2];
+        };
+
+        const nextQuestion = function() {
+            if (currentQuestionIdx >= 0){
+                test.log("answer", {
+                    question: questions[currentQuestionIdx],
+                    questionIdx: currentQuestionIdx,
+                    value: slider.value
+                });
+            }
+
+            currentQuestionIdx += 1;
+            if (currentQuestionIdx >= questions.length) {
+                test.complete();
+                return;
+            }
+
+            displayQuestion(questions[currentQuestionIdx]);
+        };
+
+        document.addEventListener('testInit', function(e) {
+            console.log('testInit handler');
+            test = e.detail.test;
+
+            test.on("start", function() {
+                nextQuestion();
+            });
+        });
+    </script>
+</body>
+</html>
