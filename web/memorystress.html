@@ -34,6 +34,12 @@
         var fillColor = "black";
         var random = new Math.seedrandom('SomeSeed');
 
+        var msgQuestion = "Совпадает ли первая и последняя фигура?";
+        var msgYes = "Да";
+        var msgNo = "Нет";
+        var msgCorrect = "Верно";
+        var msgWrong = "Не верно";
+
 
 
         var startTime;
@@ -64,17 +70,17 @@
             anchor: 'middle',
             leading: 1,
         };
-        var statusText = draw.plain("Совпадает ли первый и последний?")
+        var statusText = draw.plain(msgQuestion)
             .font(font)
             .move("50%", "20%");
 
-        var noText = draw.plain("Нет")
+        var noText = draw.plain(msgNo)
             .font(font)
             .move("35%", "80%")
             .style('cursor', 'pointer')
             .click(function(){ click(false); });
 
-        var yesText = draw.plain("Да")
+        var yesText = draw.plain(msgYes)
             .font(font)
             .move("65%", "80%")
             .style('cursor', 'pointer')
@@ -102,12 +108,12 @@
             if( (yes && first == last) ||
                 (!yes && first != last)
               ) {
-                statusText.plain("Верно");
+                statusText.plain(msgCorrect);
                 test.log("correct", data);
                 showHiders();
             }
             else {
-                statusText.plain("Не верно");
+                statusText.plain(msgWrong);
                 test.log("wrong", data);
                 hideHiders();
             }
@@ -139,14 +145,14 @@
             var s;
             var base = group;
             var rnd = getRandomInt(0,maxSymbols);
-            if(rnd == 0) s = base.circle(symbolWidth).data('type', 'circe');
-            if(rnd == 1) s = base.rect(symbolWidth, symbolHeight).data('type', 'rectangle');
-            if(rnd == 2) s = base.polygon('').plot([
+            if(rnd === 0) s = base.circle(symbolWidth).data('type', 'circe');
+            if(rnd === 1) s = base.rect(symbolWidth, symbolHeight).data('type', 'rectangle');
+            if(rnd === 2) s = base.polygon('').plot([
                 [symbolWidth / 2, 0],
                 [symbolWidth, symbolHeight],
                 [0, symbolHeight],
             ]).data('type', 'triangle'); // треугольник
-            if(rnd == 3) s = base.polygon('').plot([
+            if(rnd === 3) s = base.polygon('').plot([
                 [symbolWidth / 2, 0],
                 [symbolWidth, symbolHeight / 2],
                 [symbolWidth / 2, symbolHeight],
@@ -166,7 +172,7 @@
         }
 
         function slideEnd() {
-            statusText.plain("Совпадает ли первый и последний?");
+            statusText.plain(msgQuestion);
 
             var s = createSymbol()
                 .dx((cellWidth - symbolWidth) * 0.5)
