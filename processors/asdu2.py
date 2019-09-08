@@ -198,10 +198,15 @@ def asdu(test_results, **kwargs) -> dict:
     temperament = TemperamentController()
     result_controller = AsduController()
 
+    print(f'Test results: {test_results}')
+
     memory_score = memory.calc_score(visual_memory_score=test_results['memory']['score'],
                                      memory_stress_score=test_results['memorystress']['score'])
     temperament_score = temperament.temperament_score(introversy_score=test_results['temperament']['extravert_score'],
                                                       neurotism_score=test_results['temperament']['neurotism_score'])
+
+    print(f'Intermediate scores: memory: {memory_score}, temperament: {temperament}')
+
     operation_score = test_results['operation']['score']
     plasticity_score = test_results['plasticity']['score']
     reaction_score = test_results['reaction']['score']
@@ -212,6 +217,7 @@ def asdu(test_results, **kwargs) -> dict:
                                     plasticity_score=plasticity_score,
                                     reaction_score=reaction_score)
 
+    print(f'Asdu result (пригодность): {result}')
     return {'prigodnost': result}
 
 
