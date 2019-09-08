@@ -205,7 +205,8 @@ def asdu(test_results, **kwargs) -> dict:
     temperament_score = temperament.temperament_score(introversy_score=test_results['temperament']['extravert_score'],
                                                       neurotism_score=test_results['temperament']['neurotism_score'])
 
-    print(f'Intermediate scores: memory: {memory_score}, temperament: {temperament}')
+
+    print(f'Intermediate scores: memory: {memory_score:.2f}, temperament: {temperament_score:.2f}')
 
     operation_score = test_results['operation']['score']
     plasticity_score = test_results['plasticity']['score']
