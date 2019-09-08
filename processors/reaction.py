@@ -26,6 +26,7 @@ def reaction(text_data, **kwargs) -> dict:
         score = 0
     return {
         'score': score,
+        'fails': fails,
         'reaction_avg': reaction_avg,
         'reaction_min': reaction_min,
         'reaction_max': reaction_max,

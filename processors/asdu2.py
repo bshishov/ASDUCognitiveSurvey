@@ -64,11 +64,11 @@ class MemoryController:
 
 class TemperamentController:
     def __init__(self):
-        introversy_var = Variable('introversy', (0, 100),
-                                  *mf_set(bounds=(0, 100),
+        introversy_var = Variable('introversy', (0, 21),
+                                  *mf_set(bounds=(0, 21),
                                           names=('I', 'SI', 'S', 'SE', 'E')))
-        neurotism_var = Variable('neurotism', (0, 100),
-                                 *mf_set(bounds=(0, 100), names=('L', 'N', 'H', 'VH')))
+        neurotism_var = Variable('neurotism', (0, 24),
+                                 *mf_set(bounds=(0, 24), names=('L', 'N', 'H', 'VH')))
         temperament_var = Variable('temperament', (0, 100), *mf_set(bounds=(0, 100)))
         rules = Rules(temperament_var)
 
