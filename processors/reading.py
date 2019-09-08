@@ -3,6 +3,7 @@ import wave
 import cmath
 import numpy as np
 import os.path
+from utils.main import default_main
 
 
 def read_file(f):
@@ -66,10 +67,21 @@ def f0_freq(filename):
     return fund
 
 
-filename = files["audio.wav"]
-f0_freq = f0_freq(filename)
-f0_freq_mean = np.mean(f0_freq)
-f0_freq_std = np.mean(f0_std)
+def reading(text_data, files, **kwargs) -> dict:
+    filename = files["audio.wav"]
+    res_f0_freq = f0_freq(filename)
+    res_f0_freq_mean = np.mean(f0_freq)
+    res_f0_freq_std = np.mean(f0_freq)
 
-print('Average fundamental frequency: ', f0_freq_mean)
-print('Standard deviation: ', f0_freq_std)
+    print('Average fundamental frequency: ', res_f0_freq_mean)
+    print('Standard deviation: ', res_f0_freq_std)
+
+    return {
+        'f0_freq': res_f0_freq,
+        'f0_freq_mean': res_f0_freq_mean,
+        'f0_freq_std': res_f0_freq_std
+    }
+
+
+if __name__ == '__main__':
+    default_main(reading)

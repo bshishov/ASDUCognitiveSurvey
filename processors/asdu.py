@@ -88,22 +88,27 @@ def temperament(introvert_score, neurotism_score):
         agg_op=operators.Minimum(),
         acc_op=operators.Maximum()
     )
+    # intr is I
     rb[1] = 'if intr is I and nei is L then temp is N'
     rb[2] = 'if intr is I and nei is N then temp is N'
     rb[3] = 'if intr is I and nei is H then temp is N'
     rb[4] = 'if intr is I and nei is VH then temp is N'
+
     rb[5] = 'if intr is SI and nei is L then temp is G'
     rb[6] = 'if intr is SI and nei is N then temp is N'
     rb[7] = 'if intr is SI and nei is H then temp is B'
     rb[8] = 'if intr is SI and nei is VH then temp is B'
+
     rb[9] = 'if intr is S and nei is L then temp is G'
     rb[10] = 'if intr is S and nei is N then temp is G'
     rb[11] = 'if intr is S and nei is H then temp is N'
     rb[12] = 'if intr is S and nei is VH then temp is B'
+
     rb[13] = 'if intr is SE and nei is L then temp is G'
     rb[14] = 'if intr is SE and nei is N then temp is N'
     rb[15] = 'if intr is SE and nei is H then temp is N'
     rb[16] = 'if intr is SE and nei is VH then temp is B'
+
     rb[17] = 'if intr is E and nei is L then temp is N'
     rb[18] = 'if intr is E and nei is N then temp is N'
     rb[19] = 'if intr is E and nei is H then temp is B'
